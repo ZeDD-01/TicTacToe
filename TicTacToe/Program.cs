@@ -16,6 +16,10 @@ namespace TicTacToe
             UI.PrintBoard(board);
 
             Console.WriteLine($"You play as {playerSymbol}, the AI will be {aiSymbol}.");
+            
+            Logic.PlayerTurn(board, playerSymbol);
+            
+            UI.PrintBoard(board);
         }
     }
 }
