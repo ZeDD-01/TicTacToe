@@ -32,6 +32,10 @@ namespace TicTacToe
             }
 
             UI.PrintBoard(board);
+            
+            Logic.MakeRandomAIMove(board, aiSymbol);
+            
+            UI.PrintBoard(board);
         }
     }
 }
