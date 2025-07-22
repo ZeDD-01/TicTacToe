@@ -15,22 +15,13 @@ public class Logic
         return board;
     }
 
-    
-    public static void PlayerTurn(char[,] board, char playerSymbol)
+    public static bool TryMakeMove(char[,] board, int row, int col, char playerSymbol)
     {
-        while (true)
+        if (board[row, col] == Constants.EMPTY_CELL)
         {
-            var (row, col) = UI.AskMove();
-
-            if (board[row, col] == Constants.EMPTY_CELL)
-            {
-                board[row, col] = playerSymbol;
-                break;
-            }
-            else
-            {
-                Console.WriteLine("This cell is already being used. Please choose another cell.");
-            }
+            board[row, col] = playerSymbol;
+            return true;
         }
+        return false;
     }
 }
