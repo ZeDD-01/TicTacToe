@@ -24,15 +24,15 @@ public class UI
     public static void PrintBoard(char[,] board)
     {
         Console.WriteLine("Current board:");
-        for (int i = 0; i < Constants.BoardSize; i++)
+        for (int i = 0; i < Constants.BOARD_SIZE; i++)
         {
-            for (int j = 0; j < Constants.BoardSize; j++)
+            for (int j = 0; j < Constants.BOARD_SIZE; j++)
             {
                 Console.Write($" {board[i, j]} ");
-                if (j < Constants.BoardSize - 1) Console.Write("|");
+                if (j < Constants.BOARD_SIZE - 1) Console.Write("|");
             }
             Console.WriteLine();
-            if (i < Constants.BoardSize - 1) Console.WriteLine(new string('-', Constants.BoardSize * 4 - 1));
+            if (i < Constants.BOARD_SIZE - 1) Console.WriteLine(new string('-', Constants.BOARD_SIZE * 4 - 1));
         }
     }
     
@@ -46,8 +46,8 @@ public class UI
             if (parts.Length == 2 &&
                 int.TryParse(parts[0], out int row) &&
                 int.TryParse(parts[1], out int col) &&
-                row >= 0 && row < Constants.BoardSize &&
-                col >= 0 && col < Constants.BoardSize)
+                row >= 0 && row < Constants.BOARD_SIZE &&
+                col >= 0 && col < Constants.BOARD_SIZE)
             {
                 return (row, col);
             }

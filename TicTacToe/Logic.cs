@@ -4,12 +4,12 @@ public class Logic
 {
     public static char[,] CreateEmptyBoard()
     {
-        var board = new char[Constants.BoardSize, Constants.BoardSize];
-        for (int i = 0; i < Constants.BoardSize; i++)
+        var board = new char[Constants.BOARD_SIZE, Constants.BOARD_SIZE];
+        for (int i = 0; i < Constants.BOARD_SIZE; i++)
         {
-            for (int j = 0; j < Constants.BoardSize; j++)
+            for (int j = 0; j < Constants.BOARD_SIZE; j++)
             {
-                board[i, j] = Constants.EmptyCell;
+                board[i, j] = Constants.EMPTY_CELL;
             }
         }
         return board;
@@ -22,7 +22,7 @@ public class Logic
         {
             var (row, col) = UI.AskMove();
 
-            if (board[row, col] == Constants.EmptyCell)
+            if (board[row, col] == Constants.EMPTY_CELL)
             {
                 board[row, col] = playerSymbol;
                 break;
