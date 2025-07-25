@@ -50,4 +50,17 @@ public class Logic
             Console.WriteLine($"AI chooses position: {move.row} {move.col}");
         }
     }
+
+    public static bool isBoardFull(char[,] board)
+    {
+        for (int i = 0; i < Constants.BOARD_SIZE; i++)
+        {
+            for (int j = 0; j < Constants.BOARD_SIZE; j++)
+            {
+                if(board[i, j] == Constants.EMPTY_CELL)
+                    return false;
+            }
+        }
+        return true;
+    }
 }

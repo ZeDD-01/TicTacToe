@@ -19,23 +19,33 @@ namespace TicTacToe
 
             while (true)
             {
-                var (row, col) = UI.AskMove();
 
-                if (Logic.TryMakeMove(board, row, col, playerSymbol))
+                while (true)
+                {
+                    var (row, col) = UI.AskMove();
+
+                    if (Logic.TryMakeMove(board, row, col, playerSymbol))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("This cell is already being used. Please choose another cell.");
+                    }
+                }
+
+                UI.PrintBoard(board);
+
+                if (Logic.isBoardFull(board))
                 {
                     break;
                 }
-                else
-                {
-                    Console.WriteLine("This cell is already being used. Please choose another cell.");
-                }
-            }
 
-            UI.PrintBoard(board);
-            
-            Logic.MakeRandomAIMove(board, aiSymbol);
-            
-            UI.PrintBoard(board);
+                Logic.MakeRandomAIMove(board, aiSymbol);
+
+                UI.PrintBoard(board);
+            }
+            Console.WriteLine("Board is filled");
         }
     }
 }
