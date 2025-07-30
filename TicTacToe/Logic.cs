@@ -5,6 +5,7 @@ namespace TicTacToe;
 public class Logic
 {
     static Random random = new Random();
+
     public static char[,] CreateEmptyBoard()
     {
         var board = new char[Constants.BOARD_SIZE, Constants.BOARD_SIZE];
@@ -15,6 +16,7 @@ public class Logic
                 board[i, j] = Constants.EMPTY_CELL;
             }
         }
+
         return board;
     }
 
@@ -25,9 +27,10 @@ public class Logic
             board[row, col] = playerSymbol;
             return true;
         }
+
         return false;
     }
-    
+
     public static void MakeRandomAIMove(char[,] board, char aiSymbol)
     {
         var availableMoves = new List<(int row, int col)>();
@@ -57,10 +60,36 @@ public class Logic
         {
             for (int j = 0; j < Constants.BOARD_SIZE; j++)
             {
-                if(board[i, j] == Constants.EMPTY_CELL)
+                if (board[i, j] == Constants.EMPTY_CELL)
                     return false;
             }
         }
+
         return true;
     }
+
+    public static char CheckWinner(char[,] board)
+    {
+        for (int i = 0; i < Constants.BOARD_SIZE; i++)
+        {
+            if (board[i, 0] != Constants.EMPTY_CELL &&
+                board[i, 0] == board[i, 1] && board[i, 1] == board[i, 2])
+            {
+                return board[i, 0];
+            }
+        }
+
+        for (int j = 0; j < Constants.BOARD_SIZE; j++)
+        {
+            if (board[0, j] != Constants.EMPTY_CELL &&
+                board[0, j] == board[1, j] && board[1, j] == board[2, j])
+            {
+                return board[0, j];
+            }
+        }
+        
+        return Constants.EMPTY_CELL;
+    }
+
+
 }

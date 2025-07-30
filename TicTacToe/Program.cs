@@ -19,7 +19,6 @@ namespace TicTacToe
 
             while (true)
             {
-
                 while (true)
                 {
                     var (row, col) = UI.AskMove();
@@ -35,17 +34,27 @@ namespace TicTacToe
                 }
 
                 UI.PrintBoard(board);
-
-                if (Logic.isBoardFull(board))
+                if (Logic.CheckWinner(board) == playerSymbol)
                 {
+                    Console.WriteLine("You win!");
                     break;
                 }
 
+                if (Logic.isBoardFull(board))
+                {
+                    Console.WriteLine("Draw!");
+                    break;
+                }
+                
                 Logic.MakeRandomAIMove(board, aiSymbol);
 
                 UI.PrintBoard(board);
+                if (Logic.CheckWinner(board) == aiSymbol)
+                {
+                    Console.WriteLine("AI wins!");
+                    break;
+                }
             }
-            Console.WriteLine("Board is filled");
         }
     }
 }
