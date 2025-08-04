@@ -70,24 +70,44 @@ public class Logic
 
     public static char CheckWinner(char[,] board)
     {
+
+        // Rows
         for (int i = 0; i < Constants.BOARD_SIZE; i++)
         {
-            if (board[i, 0] != Constants.EMPTY_CELL &&
-                board[i, 0] == board[i, 1] && board[i, 1] == board[i, 2])
+            char first = board[i, 0];
+            if (first == Constants.EMPTY_CELL) continue;
+
+            bool win = true;
+            for (int j = 1; j < Constants.BOARD_SIZE; j++)
             {
-                return board[i, 0];
+                if (board[i, j] != first)
+                {
+                    win = false;
+                    break;
+                }
             }
+            if (win) return first;
         }
 
+        // Columns
         for (int j = 0; j < Constants.BOARD_SIZE; j++)
         {
-            if (board[0, j] != Constants.EMPTY_CELL &&
-                board[0, j] == board[1, j] && board[1, j] == board[2, j])
+            char first = board[0, j];
+            if (first == Constants.EMPTY_CELL) continue;
+
+            bool win = true;
+            for (int i = 1; i < Constants.BOARD_SIZE; i++)
             {
-                return board[0, j];
+                if (board[i, j] != first)
+                {
+                    win = false;
+                    break;
+                }
             }
+            if (win) return first;
         }
 
+        // diagonale
         char diag1 = board[0, 0];
         if (diag1 != Constants.EMPTY_CELL)
         {
@@ -103,6 +123,7 @@ public class Logic
             if (win) return diag1;
         }
 
+        // reverse diagonale
         char diag2 = board[0, Constants.BOARD_SIZE - 1];
         if (diag2 != Constants.EMPTY_CELL)
         {
@@ -117,6 +138,8 @@ public class Logic
             }
             if (win) return diag2;
         }
+
+        // Tie
         return Constants.EMPTY_CELL;
     }
 
