@@ -88,16 +88,35 @@ public class Logic
             }
         }
 
-        if (board[0, 0] == board[1, 1] && board[1, 1] == board[2, 2])
+        char diag1 = board[0, 0];
+        if (diag1 != Constants.EMPTY_CELL)
         {
-            return board[0, 0];
+            bool win = true;
+            for (int i = 1; i < Constants.BOARD_SIZE; i++)
+            {
+                if (board[i, i] != diag1)
+                {
+                    win = false;
+                    break;
+                }
+            }
+            if (win) return diag1;
         }
 
-        if (board[0, 2] == board[1, 1] && board[1, 1] == board[2, 0])
+        char diag2 = board[0, Constants.BOARD_SIZE - 1];
+        if (diag2 != Constants.EMPTY_CELL)
         {
-            return board[0, 2];
+            bool win = true;
+            for (int i = 1; i < Constants.BOARD_SIZE; i++)
+            {
+                if (board[i, Constants.BOARD_SIZE - 1 - i] != diag2)
+                {
+                    win = false;
+                    break;
+                }
+            }
+            if (win) return diag2;
         }
-        
         return Constants.EMPTY_CELL;
     }
 
