@@ -70,8 +70,20 @@ public class Logic
 
     public static char CheckWinner(char[,] board)
     {
+        char rowWinner = CheckRows(board);
+        if (rowWinner != Constants.EMPTY_CELL) return rowWinner;
 
-        // Rows
+        char colWinner = CheckColumns(board);
+        if (colWinner != Constants.EMPTY_CELL) return colWinner;
+
+        char diagWinner = CheckDiagonals(board);
+        if (diagWinner != Constants.EMPTY_CELL) return diagWinner;
+
+        return Constants.EMPTY_CELL; // no winner
+    }
+
+    private static char CheckRows(char[,] board)
+    {
         for (int i = 0; i < Constants.BOARD_SIZE; i++)
         {
             char first = board[i, 0];
@@ -88,8 +100,11 @@ public class Logic
             }
             if (win) return first;
         }
+        return Constants.EMPTY_CELL;
+    }
 
-        // Columns
+    private static char CheckColumns(char[,] board)
+    {
         for (int j = 0; j < Constants.BOARD_SIZE; j++)
         {
             char first = board[0, j];
@@ -106,8 +121,12 @@ public class Logic
             }
             if (win) return first;
         }
+        return Constants.EMPTY_CELL;
+    }
 
-        // diagonale
+    private static char CheckDiagonals(char[,] board)
+    {
+        // Diagonale
         char diag1 = board[0, 0];
         if (diag1 != Constants.EMPTY_CELL)
         {
@@ -123,7 +142,7 @@ public class Logic
             if (win) return diag1;
         }
 
-        // reverse diagonale
+        // Reverse Diagonale
         char diag2 = board[0, Constants.BOARD_SIZE - 1];
         if (diag2 != Constants.EMPTY_CELL)
         {
@@ -139,9 +158,8 @@ public class Logic
             if (win) return diag2;
         }
 
-        // Tie
         return Constants.EMPTY_CELL;
     }
-
-
 }
+
+
